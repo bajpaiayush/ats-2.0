@@ -14,7 +14,7 @@ vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
 st.set_page_config(page_title="ATS Score Checker", page_icon="📄", layout="centered")
 
-st.title("📄 ATS Score Checker (Auto Mode)")
+st.title("📄 ATS Score Checker ")
 st.write("Upload your resume (PDF) — the system will automatically calculate your ATS score.")
 
 uploaded_file = st.file_uploader("📁 Upload Resume (PDF format)", type=["pdf"])
@@ -51,3 +51,4 @@ if uploaded_file is not None:
 
                 st.success(f"✅ **ATS Score: {score}%**")
                 st.info(f"📂 Detected Resume Category: {category}")
+
