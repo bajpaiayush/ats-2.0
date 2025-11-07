@@ -25,6 +25,8 @@ This project is an **AI-powered Resume Classifier** that categorizes resumes bas
 ## 📈 Visualizations
 - Bar chart of Accuracy, Precision, Recall, F1 Score using `matplotlib`
 - Classification report saved as `classification_report.txt`
+  <img width="800" height="500" alt="Figure_1" src="https://github.com/user-attachments/assets/5e20d1f6-e9d6-4998-b4cd-dc15ef3b2536" />
+
 
 ## 🧪 Tech Stack
 - Python
