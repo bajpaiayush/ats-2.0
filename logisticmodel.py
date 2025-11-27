@@ -8,19 +8,19 @@ from sklearn.metrics import accuracy_score, classification_report
 import joblib
 
 # -----------------------------
-# 1️⃣ Load Dataset
+#  Load Dataset
 # -----------------------------
 df = pd.read_csv("Resume.csv")
 print(df.head())
 
 # -----------------------------
-# 2️⃣ Download stopwords (only once)
+#  Download stopwords (only once)
 # -----------------------------
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 
 # -----------------------------
-# 3️⃣ Clean Text Function
+#  Clean Text Function
 # -----------------------------
 stop_words = set(stopwords.words('english'))
 
@@ -35,31 +35,31 @@ def clean_resume(text):
 df = df.dropna(subset=['Resume_str', 'Category'])
 
 # -----------------------------
-# 4️⃣ Apply Cleaning
+#  Apply Cleaning
 # -----------------------------
 df['Cleaned'] = df['Resume_str'].apply(clean_resume)
 
 # -----------------------------
-# 5️⃣ Split Data
+#  Split Data
 # -----------------------------
 X_train, X_test, y_train, y_test = train_test_split(df['Cleaned'], df['Category'],
                                                     test_size=0.2, random_state=42)
 
 # -----------------------------
-# 6️⃣ TF-IDF Vectorization
+#  TF-IDF Vectorization
 # -----------------------------
 vectorizer = TfidfVectorizer(max_features=5000)
 X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
 
 # -----------------------------
-# 7️⃣ Train Model (LOGISTIC REGRESSION)
+#  Train Model (LOGISTIC REGRESSION)
 # -----------------------------
 model = LogisticRegression(max_iter=2000)
 model.fit(X_train_vec, y_train)
 
 # -----------------------------
-# 8️⃣ Evaluate
+#  Evaluate
 # -----------------------------
 y_pred = model.predict(X_test_vec)
 accuracy = accuracy_score(y_test, y_pred)
@@ -75,7 +75,7 @@ with open("logistic_report.txt", "w") as f:
 print("📄 Full classification report saved to 'logistic_report.txt'")
 
 # -----------------------------
-# 9️⃣ Save Model + Vectorizer
+#  Save Model + Vectorizer
 # -----------------------------
 joblib.dump(model, "logistic_model.pkl")
 joblib.dump(vectorizer, "tfidflogistic_vectorizer.pkl")
